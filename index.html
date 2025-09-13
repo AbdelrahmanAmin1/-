@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مناهج اقرأ ورتل - مشروع الحافظ الصغير</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Sans+Arabic:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --text-color: #333;
+            --bg-light: #f8f9fa;
+            --white: #fff;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius: 10px;
+        }
+
+        body {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #e74c3c);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.1;
+        }
+
+        header h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: var(--shadow);
+            margin: 10px auto;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==');
+            /* Placeholder for logo from images */
+            background-size: cover;
+        }
+
+        nav {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(255, 107, 53, 0.8), rgba(231, 76, 60, 0.8)), url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==');
+            /* Hero image from provided */
+            background-size: cover;
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-family: 'Amiri', serif;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 15px 30px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section h2 {
+            font-family: 'Amiri', serif;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--secondary-color);
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .about-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-card i {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .curriculum-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .level-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .level-card h3 {
+            color: var(--primary-color);
+            font-family: 'Amiri', serif;
+        }
+
+        .level-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .level-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .level-card li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--accent-color);
+            position: absolute;
+            right: 0;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .book-item {
+            text-align: center;
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .book-item:hover {
+            transform: scale(1.05);
+        }
+
+        .book-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+        }
+
+        .gallery {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary-color);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px 30px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1.1em;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: var(--secondary-color);
+        }
+
+        footer {
+            background: var(--secondary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero h2 {
+                font-size: 1.8em;
+            }
+
+            .section {
+                padding: 40px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+            alt="شعار مناهج اقرأ ورتل" class="logo"> <!-- Use first image as logo -->
+        <h1>مناهج اقرأ ورتل</h1>
+        <p>سلسلة لتعليم القراءة والكتابة والإملاء وقراءة وحفظ القرآن الكريم</p>
+        <p>تأليف: عبد الرحمن عبد الباقي</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home"><i class="fas fa-home"></i> الرئيسية</a></li>
+            <li><a href="#about"><i class="fas fa-info-circle"></i> عن المشروع</a></li>
+            <li><a href="#curriculum"><i class="fas fa-book"></i> المناهج</a></li>
+            <li><a href="#gallery"><i class="fas fa-images"></i> معرض الصور</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <h2>فرصة لمن يريد استغلال وقت أولاده فيما ينفعهم</h2>
+        <p>بتأسيسهم في اللغة العربية والرياضيات والقرآن الكريم</p>
+        <p>منهج يؤهل الطالب لقراءة اللغة العربية قراءة صحيحة متقنة بطريقة سهلة مبسطة وفي فترة زمنية قصيرة؛ ينتقل بعدها
+            للقراءة الصحيحة من المصحف الشريف.</p>
+        <p>ثم تأتي المرحلة الثانية: حفظ القرآن الكريم في سن مبكرة؛ بمنهج منضبط بخطة زمنية مدروسة.</p>
+        <p>فمشروع الحافظ الصغير يجمع بين الحسنيين: الأولى: تأسيسه في القراءة والكتابة والإملاء، والثانية: تأهله للقراءة
+            من المصحف ومن ثم سهولة حفظه.</p>
+        <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">سجل
+            الآن - المقاعد محدودة</button>
+    </section>
+
+    <section id="about" class="section">
+        <h2>عن المشروع</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fas fa-users"></i>
+                <h3>فريق تعليمي تربوي متخصص</h3>
+                <p>خبرة أكثر من عشرين عامًا للبنين والبنات. تأسيس الرياضيات، حلقات القرآن الكريم، تأسيس القراءة والكتابة
+                    والإملاء وتحسين الخط.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-certificate"></i>
+                <h3>الاعتماد والتطبيق</h3>
+                <p>منهج معمول به في مصر، السعودية، الكويت، معتمد من إدارة التعليم ومطبق في الروضات الحكومية.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>الفئة المستهدفة</h3>
+                <p>يتأسس فيه الطالب من بداية الحروف المجردة إلى الانتهاء من القراءة الصحيحة المتقنة. يشمل مرحلة الروضات
+                    والمرحلة الابتدائية للأميين والأعاجم.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-lightbulb"></i>
+                <h3>فكرة المشروع</h3>
+                <p>أن الطالب الصغير غالباً يلقن القرآن تلقيناً، فيحفظ سطراً أو سطرين بعد إجهاد. أما بعد دراسة المنهج
+                    بتوفيق الله، يتأهل الطالب ليقرأ من المصحف في وضوح، ويحفظ يومياً نصف وجه أو وجهاً، فيخرج من المرحلة
+                    الابتدائية وقد حفظ القرآن كله أو أكثره.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                alt="صورة عن المشروع"
+                style="max-width: 100%; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+            <!-- Use one of the provided images -->
+        </div>
+    </section>
+
+    <section id="curriculum" class="section" style="background: linear-gradient(135deg, #e8f5e8, #f0f8f0);">
+        <h2>المناهج والمحتويات</h2>
+        <p style="text-align: center; font-size: 1.2em; margin-bottom: 40px;">الحقيبة تشمل سبعة أجزاء: المستوى الأول
+            والثاني، كتاب المعلم، وأوراق العمل للكتابة ومهارات الإملاء. أوراق العمل مضمنة لكتب القراءة.</p>
+
+        <div class="curriculum-details">
+            <div class="level-card">
+                <h3>المستوى الأول</h3>
+                <p>فصول: الباب الأول: الحروف المجردة ورسمها وتحته فصول: الأول: الحروف المجردة وأسماؤها. الثاني: رسم
+                    الحرف في مواضع الكلمة.</p>
+                <p>الباب الثاني: حركة الفتح والمد بالألف وتحته فصول: الأول: حركة الفتح والتدريبات عليها. الثاني: المد
+                    بالألف والتدريبات عليه.</p>
+                <p>الباب الثالث: حركة الكسر والمد بالياء وتحته فصول: الأول: حركة الكسر والتدريبات عليها. الثاني: المد
+                    بالياء والتدريبات عليه.</p>
+                <p>الباب الرابع: حركة الضم والمد بالواو وتحته فصول: الأول: حركة الضم والتدريبات عليها. الثاني: المد
+                    بالواو والتدريبات عليه.</p>
+                <p>الباب الخامس: علامة السكون وتحته فصول.</p>
+                <ul>
+                    <li>أوراق عمل لدرس الحروف المجردة وكيفية حفظ شكلها وكتابتها؛ فيتعلم الطالب الحروف كمرحلة أولى؛
+                        ليتدرب على التعرف عليها لينتقل بعد ها إلى جزء أشكال الحروف: وضمنته بصور تربط الطالب باسم الحرف
+                        ويلونها حتى يشعر باستئناس ولا يمل. تنبيه: وضعت نقطة حمراء في بداية كل حرف؛ لينبه الطالب على
+                        بداية رسم القلم لكتابة الحرف.</li>
+                    <li>أوراق عمل لأشكال الحروف، وهو أهم مرحلة من مراحل التأسيس؛ فهي التي سيبنى عليها ما بعدها من
+                        الدروس؛ لينطلق الطالب في قراءة الكلمات والجمل؛ فلو أتقنها الطالب فما بعدها أيسر منها إلا وفال.
+                        وفيه يعرف الطالب شكل الحرف في أول الكلمة ووسطها وآخرها. تنبيهان: الأول: وضعت أسهما؛ ليعرف الطالب
+                        اتجاه كتابة كل حرف أثناء تلوينه. الثاني: وضعت نقطة حمراء في بداية كل حرف من حروف الكتابة؛ لينبه
+                        الطالب على بداية رسم القلم لكتابة الحرف.</li>
+                    <li>أوراق عمل لدرس: الحركات، الثالث والمدود، الثالثة، والسكون بما يوافق دروس الجزء الأول من السلسة؛
+                        وفيه سطرت مهارات كثيرة ومتنوعة؛ ليتدرب الطالب على الإملاء الصحيح ومهاراته: من مهارات أشكال،
+                        الحروف واتصالها من عدم، اتصالها وإتقان زمن، الحركات، والمدود والرسم العثماني للمدود، الثالثة
+                        ومهارة السكون الإملائي، والعثماني وكيفية تحليل.</li>
+                </ul>
+            </div>
+            <div class="level-card">
+                <h3>المستوى الثاني</h3>
+                <p>ويشتمل على: أولاً: التنوين بأنواعه الثلاثة: التنوين المفتوح، والمكسور والمضمون.</p>
+                <p>ثانياً: الشدة بدروسها التسعة. الشدة مع: حركة الفتح، والكسر، والضم والمدود، الثالثة والتنوين بأنواعه
+                    الثلاثة.</p>
+                <p>ثالثاً: رسم الهمزات بوعيها: الأول: همزة الوصل في: (ال) وهي الألف الشمسية والقمرية. همزة الوصل في
+                    الأسماء. همزة الوصل في الأفعال. الثاني: همزة القطع وقاعدة رسمها في مواضع الكلمة: قاعدة رسمها في أول
+                    الكلمة. قاعدة رسمها في آخر الكلمة. قاعدة رسمها في وسط الكلمة.</p>
+                <ul>
+                    <li>أوراق عمل المضمن من الجزء الثاني من السلسة، لدرس التنوين بأنواعه، الثلاثة والشدة ودروسها التس،
+                        عة وهمزة، الوصل وهمزة القطع؛ وفيه سطرت مهارات كثيرة ومتنوعة لهذه الدروس المهمة؛ ليتدرب الطالب
+                        على الإملاء الصحيح ومهاراته: من مهارات التنوين وكيفية، كتابته ا وم يميز التنوين المفتوح عن، غيره
+                        وعدم اجتماع التنوين مع الألف، والألف ومهارات الشدة بأقسامها، التسعة وكيفية تحل يلها للنطق
+                        الصحيح، لها ومهارات رسم.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="level-card" style="grid-column: 1 / -1; margin-top: 30px;">
+            <h3>دليل المعلم</h3>
+            <p>وهو عبارة عن إضاءات وتوجيهات لشرح المنهج كامل؛ قدمته بإثراءات وتوجيهات تربوية وتعليمية للمعلم. ثم شرحت
+                طريقة تدريس المنهج كامل درسا درسا ليتسنى لولي الأمر والمعلم متابعة الطالب للمنهج. وألحقته بملحق، مهم لا
+                يعرف إلا عن طريق الخبرة وضعت فيه المشاكل التي قد تعرض للطالب أثناء تأسيسه وكيفية حلها.</p>
+        </div>
+        <div class="level-card" style="grid-column: 1 / -1; margin-top: 30px;">
+            <h3>كتاب التجويد الميسر للأطفال</h3>
+            <p>وهو يأتي بعد المرحلة الأولى لمشروع الحافظ الصغير. فبعد التأسيس للقراءة الصحيحة للغة العربية. تأتي مرحلة
+                حفظ القرآن الكريم. وفيه وضعت أحكام التجويد بطريقة هيّس على الطالب حفظا وفهما ورسما: فالحفظ: رتبته على
+                متن تحفة الأطفال مع حفظ أبياتها. والفهم: فالأبيات مشروحة بطريقة مبسّطة للطالب مع الأمثلة الالزمة لكل
+                حكم. وأما الرسم: فوضحت أحكام التجويد عن طريق الرسم العثماني ليفهمه أي أحد من.</p>
+            <p style="text-align: center; font-style: italic; color: var(--secondary-color);">تحت الطبع</p>
+        </div>
+        <div class="books-grid">
+            <div class="book-item">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                    alt="المستوى الأول">
+                <p>المستوى الأول</p>
+            </div>
+            <div class="book-item">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                    alt="المستوى الثاني">
+                <p>المستوى الثاني</p>
+            </div>
+            <div class="book-item">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                    alt="دليل المعلم">
+                <p>دليل المعلم</p>
+            </div>
+            <div class="book-item">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                    alt="كتاب التجويد">
+                <p>كتاب التجويد</p>
+            </div>
+            <!-- Add more from provided grids -->
+        </div>
+    </section>
+
+    <section id="gallery" class="section gallery">
+        <h2>معرض الصور</h2>
+        <p style="text-align: center; font-size: 1.2em; margin-bottom: 40px;">تابعونا للتعرف على المنهج عبر البرامج
+            التالية تحت مسمى الكُتَّاب – مناهج اقرأ ورتل</p>
+        <div class="books-grid">
+            <div class="book-item">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                    alt="حقيبة المناهج">
+                <p>حقيبة المناهج</p>
+            </div>
+            <div class="book-item">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                    alt="أوراق العمل">
+                <p>أوراق العمل</p>
+            </div>
+            <!-- Incorporate all provided image descriptions as placeholders -->
+            <div class="book-item">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                    alt="إعلان القناة">
+                <p>إعلان القناة</p>
+            </div>
+            <div class="book-item">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                    alt="الإعلان الأخير">
+                <p>الإعلان الأخير</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>اتصل بنا</h2>
+        <p style="text-align: center; font-size: 1.2em; margin-bottom: 20px;">للتواصل: 0593781376 | 00201144148397 |
+            kttababdelbaky@gmail.com | boda2010100@gmail.com</p>
+        <p style="text-align: center; font-weight: 700; color: var(--primary-color);">بادر بالحجز فالمقاعد محدودة</p>
+        <div class="social-links">
+            <a href="https://x.com/abdalrahman0399"><i class="fab fa-twitter"></i> X (تويتر)</a>
+            <a href="https://www.youtube.com/channel/UCT48RLt534gCGiIcUvFM5-w"><i class="fab fa-youtube"></i> يوتيوب</a>
+            <a href="https://www.instagram.com/iqraawrattel?igsh=OXNmOXVwcWV5eDM4"><i class="fab fa-instagram"></i>
+                إنستغرام</a>
+            <a href="https://whatsapp.com/channel/0029VaWEM8BDDmFMmCGHIT0N"><i class="fab fa-whatsapp"></i> واتساب</a>
+            <a href="https://www.facebook.com/profile.php?id=61561085481974&mibextid=ZbWKwL"><i
+                    class="fab fa-facebook"></i> فيسبوك</a>
+        </div>
+        <form class="contact-form">
+            <input type="text" placeholder="اسمك" required>
+            <input type="email" placeholder="بريدك الإلكتروني" required>
+            <input type="tel" placeholder="رقم الهاتف" required>
+            <textarea placeholder="رسالتك" rows="5" required></textarea>
+            <button type="submit"><i class="fas fa-paper-plane"></i> إرسال</button>
+        </form>
+        <div style="text-align: center; margin-top: 30px;">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+                alt="صورة اتصل بنا" style="max-width: 100%; border-radius: var(--border-radius);">
+            <!-- Contact banner image -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 مناهج اقرأ ورتل - جميع الحقوق محفوظة | تم بحمد الله تعالى</p>
+    </footer>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('تم إرسال الرسالة بنجاح! سنتواصل معك قريباً.');
+        });
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
